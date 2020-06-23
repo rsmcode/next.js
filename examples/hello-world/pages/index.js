@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import Head from 'next/head'
 
 export default function IndexPage() {
-  const href = "https://www.google.com";
+  const href = "auth0.samples.Auth0Sample://csat99.auth0.com/ios/auth0.samples.Auth0Sample/callback";
   return (
     <>
       <Head>
