@@ -2,18 +2,18 @@ import { useRouter } from 'next/router'
 
 function RedirectPage({ ctx }) {
   const router = useRouter()
-  // Make sure we're in the browser
-  if (typeof window !== 'undefined') {
-    router.push('saltuk.alakus.authsample://csat99.auth0.com/ios/saltuk.alakus.authsample/callback');
-    return;
-  }
 }
 
 RedirectPage.getInitialProps = ctx => {
   // We check for ctx.res to make sure we're on the server.
   if (ctx.res) {
-    ctx.res.writeHead(302, { Location: 'saltuk.alakus.authsample://csat99.auth0.com/ios/saltuk.alakus.authsample/callback' });
-    ctx.res.end('Hello World\n');
+    const body = '<p>Found. Redirecting to <a href="saltuk.alakus.authsample://csat99.auth0.com/ios/saltuk.alakus.authsample/callback?code=4ZUDLiLdzb19AOmN&amp;state=s6xZUpXb_ufxsk0SMe1gZ1lVMlG37OlQKy7xgngaFfE">saltuk.alakus.authsample://csat99.auth0.com/ios/saltuk.alakus.authsample/callback?code=4ZUDLiLdzb19AOmN&amp;state=s6xZUpXb_ufxsk0SMe1gZ1lVMlG37OlQKy7xgngaFfE</a></p>';
+    ctx.res.writeHead(302, {
+      'Content-Length': Buffer.byteLength(body),
+      'Content-Type': 'text/html; charset=utf-8',
+      Location: 'saltuk.alakus.authsample://csat99.auth0.com/ios/saltuk.alakus.authsample/callback?code=4ZUDLiLdzb19AOmN&amp;state=s6xZUpXb_ufxsk0SMe1gZ1lVMlG37OlQKy7xgngaFfE'
+    });
+    ctx.res.end(body);
   }
   return {};
 }
